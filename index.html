@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do-List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -22,7 +23,8 @@
         <button onclick="AdicionarTarefa">Adicionar</button>
     </div>
 
-           <ul id="listaTarefas"></ul>
+           <ul id="listaTarefas"></ul>  
+            
      
        </div>
 
@@ -31,31 +33,45 @@
        </footer>
        <script>
           let tarefas =[];
+          let editandoIndex = null;
 
           function AdicionarTarefa(){
             const input = document.getElementsById('tarefaInput');
-            const tarefa = input.value.trim();//remove espaço desnecessários
+            const tarefa = input.value.trim();//remove espaço desnecessários, remove espaços se tiver algum
             if(tarefa){
-                tarefas.push(tarefa);
-                input.value = '';
+              if(editandoIndex === null){
+                tarefas.push(tarefa); 
+              }else{
+                tarefas[editandoIndex] = tarefa;
+                editandoIndex = null;
+              }
+                input.value = '';//remove do espço de escrever
                 atualizarList();// função que ainda vamos criar
 
             }
-          }
+          }  
 
           function removerTarefa(index){
             tarefas.splice(index, 1);
             atualizarList();//função que ainda vamos criar
           }
 
+          function EditarTarefa(index){
+              const input = document.getElementById('tarefaInput');
+              input.value = tarefas[index];
+              editandoIndex = index;
+          }
+
           function atualizarList(){
             const lista = document.getElementById('listaTarefas');
             lista.innerHTML = '';
-            tarefas.forEach((tarefa, index) => {  
+            tarefas.forEach((tarefa, index) => {   
             const li = document.createElement('li');
-            li.innerHTML=`${tarefa} <button onclick="removeTarefa(${index}")>remover</button>>`;
+            li.innerHTML=`${tarefa}
+            <button onclick="editarTarefa(${index})">Editar</button>
+             <button onclick="removeTarefa(${index})">remover</button>`;
             lista.appendChild(li);
-          });
+         })};
        </script>
 </body>
 </html>
