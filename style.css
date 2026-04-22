@@ -1,0 +1,20 @@
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+
+}
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serifs;
+    text-align: center;
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+     background: conic-gradient(from var(--angle), deeppink,rgb(177, 17, 177),purple,rgb(153, 78, 153),rgb(161, 116, 161),rgb(255, 255, 255),gray,rgb(126, 110, 110),white,rgb(165, 162, 162),rgb(65, 64, 64),rgb(88, 29, 29),rgb(107, 57, 1),rgb(135, 216, 166),rgb(73, 0, 70),red,rgb(0, 204, 255),rgb(43, 255, 0),rgb(153, 0, 255),rgb(255, 174, 0),rgb(236, 50, 221),black,rgb(82, 112, 11),rgb(0, 255, 149),rgb(248, 108, 108),violet,purple,blue,yellow,red,rgb(208, 252, 167),rgb(0, 255, 213),rgb(76, 0, 255),rgb(255, 0, 157),rgb(214, 182, 182),rgb(255, 230, 0),rgb(163, 218, 255) );
+     animation: spin 10s linear infinite;
+
+}
+ @keyframes spin {
+    to { --angle: 360deg; }
+    }
+ 
